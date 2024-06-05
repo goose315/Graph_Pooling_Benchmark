@@ -1,0 +1,1 @@
+This is a Pytorch implementation of A Comprehensive Graph Pooling Benchmark: Effectiveness, Robustness and Generalizability, which implements 15 pooling algorithms based on PYG. In order to facilitate subsequent researchers to use the code, we put the code into the juypter notebook so that other researchers can quickly locate the graph pooling algorithm they need.
