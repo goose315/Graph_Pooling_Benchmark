@@ -1,0 +1,48 @@
+params_config:
+  # general configs
+  model: ["GPNN"] # GPNN
+  type_parsing: ["GPU"] # "GPU" for new GPU based parsing algo; "CPU" for old CPU based parsing algo
+  task_type: ["task_graph"] # task_node, task_graph
+  task: ["DD"]
+  # graph task: FRANKENSTEIN, DD, NCI1, NCI109, PROTEINS
+  # node task: Actor, Cora_geom, CiteSeer_geom, PubMed_geom
+  agent_package: [100] # specify the num of works an agent should finish
+  ignore_keys: [['seed','index_runs','index_split']]
+
+  act_final: [False] # Maybe useful for some datasets, e.g. PROTEINS
+  layer_gnn1: [2] # for parsing step in encoder
+  layer_gnn2: [0] # for pooling step in encoder; if set to "share", GNN2 will share parameter with GNN1; if set to "follow", GNN2 will apply the same layers as GNN1 but don't share parameter with GNN1
+  layer_deepsets: [1]
+  layer_parsingnet: [2]
+  layer_trans: [2]
+  hidden_channel: [128]
+  dropout_network: [0.2] # for neural networks
+  dropout_parsing: [0] # for parsing
+  link_ignore_self_loop: [True]
+
+  epochs: [500] # maximum epochs
+  patience: [50] # early-stopping patience
+  log_freq: [10] # metric/loss log frequency
+  stop_item: ['loss_val'] # loss_val, metric_val
+
+  learning_rate: [0.0001]
+  weight_decay: [0.0001]
+  grad_norm: [1.0] # grad clipping
+  lr_scheduler: [True] # use lr scheduler or not
+
+  index_split: [0,1,2,3,4,5,6,7,8,9] # 0~9 for 10-fold split, 0 for fix split
+  seed: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19] # if set to "None", do not fix seed
+  index_runs: [0]
+
+  # configs for graph tasks
+  batch_size: [64]
+  splits: ["ASAP"] # ASAP, GMT, OGB
+
+  # configs for node tasks
+  layer_gnn3: ['None'] # for un-pooling step in decoder; if set to "share", GNN3 will share parameter with GNN2; if set to "follow", GNN3 will apply the same layers as GNN2 but don't share parameter with GNN2
+
+sweep_config:
+  method: "grid"
+  metric:
+    name: "metric/final"
+    goal: "maximize"
