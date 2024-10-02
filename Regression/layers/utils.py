@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Aug  5 09:44:29 2022
 
-@author: Fanding Xu
-"""
 import torch
 from torch import Tensor
 import math
