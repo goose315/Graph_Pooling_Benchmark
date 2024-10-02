@@ -320,7 +320,6 @@ class Trainer():
         y_true = torch.cat(y_true, dim = 0).cpu().numpy()
         y_scores = torch.cat(y_scores, dim = 0).cpu().numpy()
 
-        # 检查并打印 y_true 和 y_scores 中 NaN 的数量
         nan_count_y_true = np.isnan(y_true).sum()
         nan_count_y_scores = np.isnan(y_scores).sum()
         #print(f"Number of NaN in y_true: {nan_count_y_true}")
