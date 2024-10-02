@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jul  3 15:01:38 2022
-
-@author: Fanding Xu
-"""
 
 import math
 import torch
@@ -878,12 +872,12 @@ class CGIPool(torch.nn.Module):
         self.np_conv.reset_parameters()
         self.positive_pooling.reset_parameters()
         self.negative_pooling.reset_parameters()
-        # 如果 Discriminator 类有 reset_parameters 方法，请调用
+
         if hasattr(self.discriminator, 'reset_parameters'):
             self.discriminator.reset_parameters()
     
     def forward(self, x, edge_index, edge_attr=None, batch=None):
-        device = x.device  # 获取输入张量的设备信息
+        device = x.device  
 
         if batch is None:
             batch = edge_index.new_zeros(x.size(0))
@@ -926,8 +920,8 @@ class CGIPool(torch.nn.Module):
 
         negative_pair = torch.cat([x_np_readout, x_readout], dim=1)
 
-        real = torch.ones(positive_pair.shape[0], device=device)  # 将张量移动到相应设备
-        fake = torch.zeros(negative_pair.shape[0], device=device)  # 将张量移动到相应设备
+        real = torch.ones(positive_pair.shape[0], device=device) 
+        fake = torch.zeros(negative_pair.shape[0], device=device) 
         #real_loss = self.loss_fn(self.discriminator(positive_pair), real)
         #fake_loss = self.loss_fn(self.discriminator(negative_pair), fake)
         #discrimination_loss = (real_loss + fake_loss) / 2
