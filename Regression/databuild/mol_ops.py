@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Mar 17 10:11:05 2022
-
-@author: Fanding Xu
-"""
 
 import pandas as pd
 import numpy as np
@@ -65,7 +59,7 @@ def get_atom_features( atom ):
 def get_atom_features_vector( atom, type_length ):
     atom_features = get_atom_features(atom)
     # one-hot encoding
-    atom_type = np.zeros(type_length) # type_length决定了原子类型最大数量
+    atom_type = np.zeros(type_length) 
     atom_type[atom_features['type']-1] = 1
     atom_Hs = np.zeros(5)
     atom_Hs[atom_features['Hs_num']] = 1
@@ -92,7 +86,6 @@ def get_atoms_features_matrix( mol, type_length = 100 ):
         fv = get_atom_features_vector(atom, type_length)
         atoms_features_matrix.append(fv)
     atoms_features_matrix = np.array(atoms_features_matrix)
-    # # 在原子属性的最后一项加上了该原子的部分电荷
     # contribs = get_atoms_partial_charge(mol)
     # atoms_features_matrix = np.concatenate([atoms_features_matrix,
     #                                         contribs.reshape(-1,1)], axis=1)
