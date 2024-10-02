@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-# author:  WuJunran
-# email:   wu_junran@buaa.edu.cn
-# date:    2021-01-15 16:30:35
 
 import os
 import sys
