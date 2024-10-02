@@ -157,21 +157,15 @@ class SEP(torch.nn.Module):
         x = xIn = torch.cat([t['node_features'] for t in batch_data], dim=0).to(self.args.device)
         xs = []
         for layer in range(self.args.num_convs):
-            # 处理图卷积
             edge_index = self.__process_layer_edgeIndex(batch_data, layer)
             x = F.relu(self.convs[layer](x, edge_index))
 
-            # 处理 SEPooling
             if layer < self.args.tree_depth - 1:
                 edge_index = self.__process_sep_edgeIndex(batch_data, layer + 1)
                 size = self.__process_sep_size(batch_data, layer + 1)
                 x = F.relu(self.sepools[layer](x, edge_index, size=size))
 
-            # 打印调试信息
             #print(f"Layer {layer} - Before batch processing: x.shape = {x.shape}")
-
-            # 重新计算 batch 张量
-            # 在处理 SEPooling 之后，使用当前 layer 的 batch 信息
             batch = self.__process_batch(batch_data, layer if layer < self.args.tree_depth - 1 else 0)
             #print(f"Layer {layer} - After batch processing: batch.shape = {batch.shape}, x.shape = {x.shape}")
         
@@ -184,14 +178,11 @@ class SEP(torch.nn.Module):
             pooled_xs.append(pooled_x)
     
         for layer, x in enumerate(xs):
-            # 使用当前的 batch 和 x 进行 pooling
             #print(f"Layer {layer} - Final pooling: batch.shape = {batch.shape}, x.shape = {x.shape}")
             pooled_x = self.global_pool(x, batch)
             pooled_xs.append(pooled_x)
 
-        # 跳跃知识机制
         x = torch.cat(pooled_xs, dim=1)
-    
-        # 分类
+
         x = self.classifier(x)
         return F.log_softmax(x, dim=-1)
