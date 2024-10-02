@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jul  8 16:00:24 2022
 
-@author: Fanding Xu
-"""
 import numpy as np
 from sklearn.manifold import TSNE
 import torch
@@ -40,7 +35,7 @@ class TSNESHOW():
         tsne = TSNE(n_components=2, early_exaggeration=20, init='pca', random_state=123)
         X = tsne.fit_transform(self.x)
         X_min, X_max = X.min(0), X.max(0)
-        self.X = (X - X_min) / (X_max - X_min)  # 归一化
+        self.X = (X - X_min) / (X_max - X_min)
         
     def plot(self, title=None, s=13, linewidths=0.7):
         plt.figure()
@@ -81,7 +76,7 @@ class TSNESHOW_split():
             tsne = TSNE(n_components=2, early_exaggeration=20, init='pca', random_state=123)
             X = tsne.fit_transform(x)
             X_min, X_max = X.min(0), X.max(0)
-            self.X.append((X - X_min) / (X_max - X_min))  # 归一化
+            self.X.append((X - X_min) / (X_max - X_min))
         
     def plot(self, title=None, s=13, linewidths=0.7):
         for i in range(self.split):
@@ -151,7 +146,7 @@ class ScaffoldTSNE():
         tsne = TSNE(n_components=2, early_exaggeration=20, init='pca', random_state=123)
         X = tsne.fit_transform(self.x)
         X_min, X_max = X.min(0), X.max(0)
-        self.X = (X - X_min) / (X_max - X_min)  # 归一化
+        self.X = (X - X_min) / (X_max - X_min)  
 
     def plot(self, title=None, s=13, linewidths=0.7,
              show_legend=True):
