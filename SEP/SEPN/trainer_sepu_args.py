@@ -89,7 +89,7 @@ class Trainer(object):
         # val
         mask = batch['data'].val_mask
         if self.args.dataset in ['cornell', 'texas', 'wisconsin'] and mask.dim() > 1:
-            mask = mask[:, 0]  # 选择第一列作为掩码
+            mask = mask[:, 0] 
         correct = (pred[mask] == batch['data'].y[mask]).sum()
         val_acc = int(correct) / int(mask.sum())
         val_loss = F.nll_loss(out[mask], batch['data'].y[mask], reduction='sum').item()
@@ -97,7 +97,7 @@ class Trainer(object):
         # test
         mask = batch['data'].test_mask
         if self.args.dataset in ['cornell', 'texas', 'wisconsin'] and mask.dim() > 1:
-            mask = mask[:, 0]  # 选择第一列作为掩码
+            mask = mask[:, 0] 
         correct = (pred[mask] == batch['data'].y[mask]).sum()
         test_acc = int(correct) / int(mask.sum())
         test_loss = F.nll_loss(out[mask], batch['data'].y[mask], reduction='sum').item()
