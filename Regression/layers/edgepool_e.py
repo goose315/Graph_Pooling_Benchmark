@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 27 20:55:41 2022
-
-@author: Fanding Xu
-"""
 
 from collections import namedtuple
 
