@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Nov 30 21:10:15 2022
-
-@author: Fanding Xu
-"""
 
 import torch
 
