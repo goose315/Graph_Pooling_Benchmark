@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Aug 23 16:15:31 2022
-
-@author: Fanding Xu
-"""
 
 import torch
 from layers import EGIN, EdgePropagate
