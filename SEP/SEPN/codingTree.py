@@ -117,7 +117,7 @@ class PartitionTreeNode():
         self.vol = vol
         self.g = g
         self.merged = False
-        self.child_h = child_h #不包括该节点的子树高度
+        self.child_h = child_h 
         self.child_cut = child_cut
 
     def __str__(self):
