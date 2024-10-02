@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 21 14:26:31 2022
 
-@author: Fanding Xu
-"""
 
 from .utils import (DataPrePop,
                     GenerateDataList,
