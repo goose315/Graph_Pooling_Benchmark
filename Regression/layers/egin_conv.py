@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 21 20:25:05 2022
-
-@author: Fanding Xu
-"""
 
 import numpy as np
 import torch
@@ -81,14 +75,14 @@ class DenseEGIN(MessagePassing):
                  out_channels_x,
                  out_channels_e=None,
                  edge_batchnorm=False,
-                 drop_out=None,  # 添加 drop_out 参数
+                 drop_out=None, 
                  **kwargs):
         kwargs.setdefault('aggr', 'add')
         super().__init__(**kwargs)
         if out_channels_e is None:
             out_channels_e = out_channels_x
         self.edge_batchnorm = edge_batchnorm
-        self.drop_out = drop_out  # 保存 drop_out 参数
+        self.drop_out = drop_out 
 
         self.mlp_x = Sequential(Linear(in_channels_x + out_channels_e, out_channels_x),
                                 ReLU(),
